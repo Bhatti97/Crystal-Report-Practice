@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Reporting_practice.Models.Employee>
+
+@{
+    ViewBag.Title = "Index";
+    //Testing New by Abdullah
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create") | @Html.ActionLink("All Employee Report MVC", "AllEmployeeReport") 
+    | @Html.ActionLink("All Employee Report Web Form", "Report.aspx", "Reports",new { value="AllEmployeeReport"},null)
+    |     @Html.ActionLink("All Employee Date Wise Report Web Form", "Report.aspx", "Reports", new { value = "EmployeeDatewise" }, null)
+    | @Html.ActionLink("All Employee Salary Wise Report Web Form", "Report.aspx", "Reports", new { value = "EmployeeSalarywise" }, null)
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee_Salary)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee_Date_of_Join)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employee_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employee_Salary)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employee_Date_of_Join)
+        </td>
+        <td>
+            @Html.ActionLink("Report", "Report.aspx", "Reports", new { E_id = item.Employee_id, value = "IndividualReport" }, null) |
+            @Html.ActionLink("Edit", "Edit", new { id=item.Employee_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Employee_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Employee_id })
+        </td>
+    </tr>
+}
+
+</table>
